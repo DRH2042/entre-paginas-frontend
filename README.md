@@ -1,6 +1,14 @@
 # Entre Páginas
 
-Front-end for the TripleTen final project, built with React and Vite.
+Entre Páginas is a responsive React application for discovering books by title, author, or subject using the Open Library API.
+
+## Tech Stack
+- React
+- Vite
+- React Router
+- Open Library APIFront-end for the TripleTen final project, built with React and Vite.
+
+  
 The first UI layer includes a shared Header, responsive Home layout, and reusable SearchForm.
 Open Library is the planned API; integration is not implemented yet.
 
