@@ -1,6 +1,7 @@
 # Entre Páginas
 
-Initial front-end setup for the TripleTen final project, built with React and Vite.
+Front-end for the TripleTen final project, built with React and Vite.
+The first UI layer includes a shared Header, responsive Home layout, and reusable SearchForm.
 Open Library is the planned API; integration is not implemented yet.
 
 ## Run locally
@@ -21,12 +22,15 @@ npm run dev
 
 ## Routes
 
-- `/`: Home placeholder.
+- `/`: Home page with a book search form.
 - `/search`: SearchResults placeholder.
 
 ## Source structure
 
-- `src/components/`: shared components (empty for now).
+- `src/components/`: reusable Header and SearchForm components.
 - `src/pages/`: route pages.
 - `src/utils/`: utilities (empty for now).
 - `src/styles/`: global styles.
+
+The form trims and validates the query, then navigates to `/search?q=...`.
+Search results remain a placeholder; no API calls are made.
