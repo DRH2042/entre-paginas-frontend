@@ -21,3 +21,10 @@
 
 
 @media (max-width: 480px) { .navigation { gap: 1rem; } }
+
+.navigation { align-items: center; flex-wrap: wrap; }
+.navigation__languages { display: flex; align-items: center; gap: 0.2rem; font-size: 0.8125rem; }
+.navigation__language { min-width: 36px; min-height: 44px; padding: 0.25rem; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--color-muted); cursor: pointer; }
+.navigation__language[aria-pressed='true'] { color: var(--color-ink); border-bottom-color: var(--color-ink); font-weight: 600; }
+.navigation__language:hover { color: var(--color-ink); }
+@media (max-width: 600px) { .navigation { gap: 1rem; } }

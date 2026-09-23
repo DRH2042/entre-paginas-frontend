@@ -1,9 +1,11 @@
+import { useLanguage } from '../../utils/language.js'
 import { useNavigate } from 'react-router-dom'
 import SearchForm from '../../components/SearchForm/SearchForm.jsx'
 import About from '../../components/About/About.jsx'
 import './Home.css'
 
 function Home() {
+  const { t } = useLanguage()
   const navigate = useNavigate()
 
   function handleSearch(query) {
@@ -14,9 +16,9 @@ function Home() {
     <div className="home">
       <section className="home__hero" aria-labelledby="home-title">
         <div className="home__intro">
-          <p className="home__eyebrow">A little curiosity. A whole new chapter.</p>
-          <h1 className="home__title" id="home-title">Your next story<br />starts <em>here.</em></h1>
-          <p className="home__description">Between the pages, there’s always something waiting to be discovered. Find a familiar favorite or the beginning of something new.</p>
+          <p className="home__eyebrow">{t.eyebrow}</p>
+          <h1 className="home__title" id="home-title">{t.heroStart}<br />{t.heroEnd} <em>{t.heroEmphasis}</em></h1>
+          <p className="home__description">{t.intro}</p>
           <SearchForm onSearch={handleSearch} />
         </div>
         <div className="home__illustration" aria-hidden="true">
@@ -25,10 +27,10 @@ function Home() {
           <div className="home__book home__book--front">
             <span className="home__book-label">ENTRE<br />PÁGINAS</span>
             <span className="home__book-rule" />
-            <span className="home__book-caption">A world within<br />every cover.</span>
+            <span className="home__book-caption">{t.bookCaption}</span>
             <span className="home__book-number">01</span>
           </div>
-          <span className="home__illustration-caption">For the love of getting lost in a book.</span>
+          <span className="home__illustration-caption">{t.illustrationCaption}</span>
         </div>
       </section>
       <About />
