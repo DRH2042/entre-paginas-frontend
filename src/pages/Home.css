@@ -33,3 +33,8 @@
   .home__note { grid-template-columns: 1fr; gap: 1rem; }
   .home__note-text { grid-column: auto; }
 }
+
+@media (max-width: 360px) {
+  .home__book--back { transform: translate(20px, -3px) rotate(13deg) scale(0.85); }
+  .home__book--front { transform: rotate(-9deg) scale(0.85); }
+}
