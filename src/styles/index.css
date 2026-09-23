@@ -1,15 +1,31 @@
 @import '../vendor/fonts.css';
 
 :root {
-  --color-ink: #233c31;
-  --color-muted: #62685e;
-  --color-border: #dcdccf;
-  --color-paper: #fffef9;
+  --color-background: #111f2c;
+  --color-navigation: #0d1924;
+  --color-ink: #f3eee4;
+  --color-muted: #b5c4cd;
+  --color-border: #526c7c;
+  --color-control-border: #79909c;
+  --color-paper: #1b3040;
+  --color-input-focus: #20394b;
+  --color-accent: #a9d4dc;
+  --color-editorial: #d7bf94;
+  --color-button: #c9dce0;
+  --color-button-hover: #e3eeee;
+  --color-on-button: #111f2c;
+  --color-focus: #e3bd78;
+  --color-error: #ffb4a6;
+  --color-book-front: #294e5d;
+  --color-book-spine: #3d6775;
+  --color-book-back: #647e94;
+  --color-book-pages: #c9bd9f;
+  --color-shadow: #060d1466;
   --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
   --page-gutter: clamp(1.25rem, 4vw, 3rem);
   font-family: 'Arimo', Arial, Helvetica, sans-serif;
   color: var(--color-ink);
-  background: #f7f6ef;
+  background: var(--color-background);
   font-synthesis: none;
   line-height: 1.5;
 }
@@ -18,7 +34,7 @@
 body { margin: 0; }
 button, input { font: inherit; }
 a { color: inherit; }
-:focus-visible { outline: 2px solid #986444; outline-offset: 4px; }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; }
 
 @media (prefers-reduced-motion: no-preference) {
   .navigation__link, .header__brand, .book-card__link, .book-details__back, .footer__link {
@@ -29,4 +45,4 @@ a { color: inherit; }
   }
   .search-form__input { transition: background-color 160ms ease; }
 }
-.search-form__input:focus { background-color: #f7f6ef; }
+.search-form__input:focus { background-color: var(--color-input-focus); }

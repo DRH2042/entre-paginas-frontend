@@ -6,8 +6,8 @@
 .search-results__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.5rem 1.5rem; margin: 0; padding: 0; list-style: none; }
 .search-results__state { padding: 3rem 1rem; color: var(--color-muted); text-align: center; }
 .search-results__state-title { color: var(--color-ink); font-family: var(--font-serif); font-size: 1.75rem; font-weight: 400; }
-.search-results__retry { min-height: 44px; padding: 0.75rem 1.5rem; border: 0; border-radius: 3px; background: var(--color-ink); color: white; cursor: pointer; }
-.search-results__retry:hover { background: #314c41; }
+.search-results__retry { min-height: 44px; padding: 0.75rem 1.5rem; border: 0; border-radius: 3px; background: var(--color-button); color: var(--color-on-button); cursor: pointer; }
+.search-results__retry:hover { background: var(--color-button-hover); }
 @media (max-width: 900px) { .search-results__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 700px) { .search-results__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 420px) {
