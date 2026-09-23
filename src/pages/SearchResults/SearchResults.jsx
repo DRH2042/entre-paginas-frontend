@@ -3,13 +3,19 @@ import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import BookCard from '../../components/BookCard/BookCard.jsx'
 import SearchForm from '../../components/SearchForm/SearchForm.jsx'
-import { searchBooks } from '../../utils/openLibrary.js'
+import { getSearchResults, readSearchCache } from '../../utils/searchCache.js'
 import Preloader from '../../components/Preloader/Preloader.jsx'
 import './SearchResults.css'
 
 function SearchRequest({ query, onRetry }) {
   const { t } = useLanguage()
-  const [state, setState] = useState({ status: 'loading', books: [] })
+  const [state, setState] = useState(() => {
+    const books = readSearchCache(query)
+    return books === null ? { status: 'loading', books: [] } : { status: 'success', books }
+  })
+  const [visibleCount, setVisibleCount] = useState(3)
+  const grid = useRef(null)
+  const nextItem = useRef(null)
   const [attempt, setAttempt] = useState(0)
 
   useEffect(() => {
@@ -17,7 +23,7 @@ function SearchRequest({ query, onRetry }) {
     let active = true
     const timeout = setTimeout(() => controller.abort(), 15000)
 
-    searchBooks(query, controller.signal)
+    getSearchResults(query, controller.signal, attempt > 0)
       .then((books) => {
         if (active) setState({ status: 'success', books })
       })
@@ -32,6 +38,19 @@ function SearchRequest({ query, onRetry }) {
       controller.abort()
     }
   }, [query, attempt])
+
+  useEffect(() => {
+    if (nextItem.current === null) return
+    const item = grid.current?.children[nextItem.current]
+    const focusTarget = item?.querySelector('a') || item
+    focusTarget?.focus()
+    nextItem.current = null
+  }, [visibleCount])
+
+  function showMore() {
+    nextItem.current = visibleCount
+    setVisibleCount((count) => Math.min(count + 3, state.books.length))
+  }
 
   function retry() {
     setState({ status: 'loading', books: [] })
@@ -56,10 +75,11 @@ function SearchRequest({ query, onRetry }) {
   }
   return (
     <>
-      <p className="search-results__summary" role="status">{t.summary(state.books.length)}</p>
-      <ul className="search-results__grid">
-        {state.books.map((book, index) => <li className="search-results__item" key={book.key || index}><BookCard book={book} /></li>)}
+      <p className="search-results__summary" role="status">{t.summary(Math.min(visibleCount, state.books.length), state.books.length)}</p>
+      <ul className="search-results__grid" ref={grid} id="search-books">
+        {state.books.slice(0, visibleCount).map((book, index) => <li className="search-results__item" tabIndex={-1} key={book.key || index}><BookCard book={book} /></li>)}
       </ul>
+      {visibleCount < state.books.length && <button className="search-results__more" type="button" aria-controls="search-books" onClick={showMore}>{t.showMore}</button>}
     </>
   )
 }
