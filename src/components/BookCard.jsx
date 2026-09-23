@@ -1,7 +1,13 @@
 import { useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
+import { getWorkId } from '../utils/bookDetails.js'
 import './BookCard.css'
 
 function BookCard({ book }) {
+  const [searchParams] = useSearchParams()
+  const workId = getWorkId(book.key)
+  const query = searchParams.get('q') || ''
+  const detailUrl = workId ? `/book/${workId}?${new URLSearchParams({ q: query })}` : null
   const [failedCover, setFailedCover] = useState(null)
   const title = (typeof book.title === 'string' && book.title.trim()) || 'Untitled book'
   const authors = Array.isArray(book.author_name)
@@ -23,7 +29,7 @@ function BookCard({ book }) {
           </div>
         )}
       </div>
-      <h2 className="book-card__title">{title}</h2>
+      <h2 className="book-card__title">{detailUrl ? <Link className="book-card__link" to={detailUrl}>{title}</Link> : title}</h2>
       <p className="book-card__author">{authors || 'Unknown author'}</p>
       <p className="book-card__year">First published: {book.first_publish_year || 'Year unknown'}</p>
     </article>

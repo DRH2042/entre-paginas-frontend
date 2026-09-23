@@ -1,0 +1,24 @@
+.book-details { max-width: 1200px; margin: 0 auto; padding: 2.5rem var(--page-gutter) 4rem; }
+.book-details__back { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 2rem; text-underline-offset: 0.25em; }
+.book-details__layout { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 3rem; align-items: start; }
+.book-details__cover { display: grid; place-items: center; width: 100%; aspect-ratio: 3 / 4; padding: 1.25rem; background: #eaece2; border: 1px solid var(--color-border); border-radius: 4px; }
+.book-details__image { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.book-details__fallback { color: var(--color-muted); text-align: center; }
+.book-details__content { min-width: 0; overflow-wrap: anywhere; }
+.book-details__title { margin: 0 0 1rem; font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.15; }
+.book-details__author, .book-details__year { color: var(--color-muted); }
+.book-details__year { font-size: 0.875rem; }
+.book-details__section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
+.book-details__subtitle, .book-details__state-title { font-family: var(--font-serif); font-size: 1.75rem; font-weight: 400; }
+.book-details__subtitle { margin: 0 0 1rem; }
+.book-details__description { white-space: pre-line; line-height: 1.8; }
+.book-details__subjects { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.book-details__subject { max-width: 100%; padding: 0.4rem 0.75rem; border: 1px solid var(--color-border); border-radius: 3px; font-size: 0.8125rem; }
+.book-details__state { padding: 2rem 0; text-align: center; }
+.book-details__retry { min-height: 44px; padding: 0.75rem 1.5rem; border: 0; border-radius: 3px; background: var(--color-ink); color: white; cursor: pointer; }
+.book-details__retry:hover { background: #314c41; }
+@media (max-width: 900px) { .book-details__layout { grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 2rem; } }
+@media (max-width: 600px) {
+  .book-details__layout { grid-template-columns: minmax(0, 1fr); }
+  .book-details__cover { max-width: 280px; margin: 0 auto; }
+}

@@ -8,3 +8,6 @@
 .book-card__year { margin: 0.5rem 0 0; color: var(--color-muted); font-size: 0.75rem; }
 
 @media (max-width: 420px) { .book-card__cover { max-height: 320px; } }
+
+.book-card__link { text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.book-card__link:hover { color: #8b5d43; }
