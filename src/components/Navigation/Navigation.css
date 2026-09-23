@@ -1,0 +1,23 @@
+.navigation {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navigation__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.navigation__link:hover,
+.navigation__link[aria-current='page'] {
+  color: var(--color-ink);
+  border-bottom-color: var(--color-ink);
+}
+
+
+@media (max-width: 480px) { .navigation { gap: 1rem; } }

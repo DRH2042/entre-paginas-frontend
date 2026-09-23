@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
-import { getBookDetails } from '../utils/bookDetails.js'
+import { getBookDetails } from '../../utils/bookDetails.js'
+import Preloader from '../../components/Preloader/Preloader.jsx'
 import './BookDetails.css'
 
 function DetailContent({ bookId }) {
@@ -31,7 +32,7 @@ function DetailContent({ bookId }) {
   }, [state.status])
 
   if (state.status === 'loading') {
-    return <div className="book-details__state" role="status"><h1 className="book-details__state-title" tabIndex={-1} ref={heading}>Loading book details…</h1></div>
+    return <Preloader message="Loading book details…" headingRef={heading} />
   }
   if (state.status === 'error') {
     return (

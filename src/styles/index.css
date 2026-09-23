@@ -1,11 +1,13 @@
+@import '../vendor/fonts.css';
+
 :root {
   --color-ink: #233c31;
   --color-muted: #62685e;
   --color-border: #dcdccf;
   --color-paper: #fffef9;
-  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
   --page-gutter: clamp(1.25rem, 4vw, 3rem);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Arimo', Arial, Helvetica, sans-serif;
   color: var(--color-ink);
   background: #f7f6ef;
   font-synthesis: none;
@@ -17,3 +19,14 @@ body { margin: 0; }
 button, input { font: inherit; }
 a { color: inherit; }
 :focus-visible { outline: 2px solid #986444; outline-offset: 4px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .navigation__link, .header__brand, .book-card__link, .book-details__back, .footer__link {
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+  .search-form__button, .search-results__retry, .book-details__retry {
+    transition: background-color 160ms ease;
+  }
+  .search-form__input { transition: background-color 160ms ease; }
+}
+.search-form__input:focus { background-color: #f7f6ef; }

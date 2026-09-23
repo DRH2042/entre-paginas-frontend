@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { getWorkId } from '../utils/bookDetails.js'
+import { getWorkId } from '../../utils/bookDetails.js'
 import './BookCard.css'
 
 function BookCard({ book }) {

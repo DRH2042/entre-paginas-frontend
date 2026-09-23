@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import BookCard from '../components/BookCard.jsx'
-import SearchForm from '../components/SearchForm.jsx'
-import { searchBooks } from '../utils/openLibrary.js'
+import BookCard from '../../components/BookCard/BookCard.jsx'
+import SearchForm from '../../components/SearchForm/SearchForm.jsx'
+import { searchBooks } from '../../utils/openLibrary.js'
+import Preloader from '../../components/Preloader/Preloader.jsx'
 import './SearchResults.css'
 
 function SearchRequest({ query, onRetry }) {
@@ -37,7 +38,7 @@ function SearchRequest({ query, onRetry }) {
   }
 
   if (state.status === 'loading') {
-    return <div className="search-results__state" role="status"><span className="search-results__spinner" aria-hidden="true" /><p>Looking through the shelves…</p></div>
+    return <Preloader message="Looking through the shelves…" />
   }
   if (state.status === 'error') {
     return (

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import SearchForm from '../components/SearchForm.jsx'
+import SearchForm from '../../components/SearchForm/SearchForm.jsx'
+import About from '../../components/About/About.jsx'
 import './Home.css'
 
 function Home() {
@@ -30,11 +31,7 @@ function Home() {
           <span className="home__illustration-caption">For the love of getting lost in a book.</span>
         </div>
       </section>
-      <section className="home__note" aria-labelledby="home-note-title">
-        <p className="home__note-label">The reading life</p>
-        <h2 className="home__note-title" id="home-note-title">One book can open a whole new world.</h2>
-        <p className="home__note-text">Make room for a little wonder.<br />Your next chapter is yours to choose.</p>
-      </section>
+      <About />
     </div>
   )
 }

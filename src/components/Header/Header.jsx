@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import Navigation from '../Navigation/Navigation.jsx'
 import './Header.css'
 
 function Header() {
@@ -10,10 +11,7 @@ function Header() {
           <span className="header__mark" aria-hidden="true">ep.</span>
           <span>Entre Páginas</span>
         </NavLink>
-        <nav className="header__nav" aria-label="Main navigation">
-          <NavLink className="header__link" to="/" end>Home</NavLink>
-          <NavLink className="header__link" to="/search">Search</NavLink>
-        </nav>
+        <Navigation />
       </div>
     </header>
   )
