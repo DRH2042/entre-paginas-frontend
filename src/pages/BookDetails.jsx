@@ -8,19 +8,27 @@ function DetailContent({ bookId }) {
   const [attempt, setAttempt] = useState(0)
   const [failedCover, setFailedCover] = useState(null)
   const heading = useRef(null)
+  const shouldFocusHeading = useRef(true)
 
   useEffect(() => {
     const controller = new AbortController()
     let active = true
     const timeout = setTimeout(() => controller.abort(), 15000)
+    function finish(nextState) {
+      if (!active) return
+      shouldFocusHeading.current = document.activeElement === heading.current
+      setState(nextState)
+    }
     getBookDetails(bookId, controller.signal)
-      .then((book) => { if (active) setState({ status: 'success', book }) })
-      .catch(() => { if (active) setState({ status: 'error' }) })
+      .then((book) => finish({ status: 'success', book }))
+      .catch(() => finish({ status: 'error' }))
       .finally(() => clearTimeout(timeout))
     return () => { active = false; clearTimeout(timeout); controller.abort() }
   }, [bookId, attempt])
 
-  useEffect(() => { heading.current?.focus() }, [state.status])
+  useEffect(() => {
+    if (shouldFocusHeading.current) heading.current?.focus()
+  }, [state.status])
 
   if (state.status === 'loading') {
     return <div className="book-details__state" role="status"><h1 className="book-details__state-title" tabIndex={-1} ref={heading}>Loading book details…</h1></div>
@@ -30,7 +38,7 @@ function DetailContent({ bookId }) {
       <div className="book-details__state" role="alert">
         <h1 className="book-details__state-title" tabIndex={-1} ref={heading}>We couldn’t load this book.</h1>
         <p>The book may be unavailable. Check your connection or try again.</p>
-        <button className="book-details__retry" onClick={() => { setState({ status: 'loading' }); setAttempt((value) => value + 1) }}>Try again</button>
+        <button className="book-details__retry" onClick={() => { shouldFocusHeading.current = true; setState({ status: 'loading' }); setAttempt((value) => value + 1) }}>Try again</button>
       </div>
     )
   }

@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import BookCard from '../components/BookCard.jsx'
 import SearchForm from '../components/SearchForm.jsx'
 import { searchBooks } from '../utils/openLibrary.js'
 import './SearchResults.css'
 
-function SearchRequest({ query }) {
+function SearchRequest({ query, onRetry }) {
   const [state, setState] = useState({ status: 'loading', books: [] })
   const [attempt, setAttempt] = useState(0)
 
@@ -33,6 +33,7 @@ function SearchRequest({ query }) {
   function retry() {
     setState({ status: 'loading', books: [] })
     setAttempt((value) => value + 1)
+    onRetry()
   }
 
   if (state.status === 'loading') {
@@ -63,15 +64,18 @@ function SearchRequest({ query }) {
 function SearchResults() {
   const [searchParams, setSearchParams] = useSearchParams()
   const query = (searchParams.get('q') || '').trim()
+  const heading = useRef(null)
+
+  useEffect(() => { heading.current?.focus() }, [query])
 
   return (
     <div className="search-results">
       <header className="search-results__header">
         <p className="search-results__eyebrow">Between the pages</p>
-        <h1 className="search-results__title">{query ? `Results for “${query}”` : 'Find your next story.'}</h1>
+        <h1 className="search-results__title" ref={heading} tabIndex={-1}>{query ? `Results for “${query}”` : 'Find your next story.'}</h1>
         <SearchForm key={query} initialQuery={query} onSearch={(value) => setSearchParams({ q: value })} />
       </header>
-      {query ? <SearchRequest key={query} query={query} /> : <p className="search-results__state">Enter a book title or author to explore Open Library.</p>}
+      {query ? <SearchRequest key={query} query={query} onRetry={() => heading.current?.focus()} /> : <p className="search-results__state">Enter a book title or author to explore Open Library.</p>}
     </div>
   )
 }
