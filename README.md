@@ -4,7 +4,7 @@ Entre Páginas is a responsive book discovery application built as a TripleTen f
 
 ## Live Demo
 
-**Not deployed yet.** A live demo link will be added after deployment.
+[Visit Entre Páginas](https://entre-paginas-frontend.vercel.app)
 
 ## Main Features
 
