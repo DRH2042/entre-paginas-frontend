@@ -21,7 +21,7 @@ export async function getBookDetails(id, signal) {
   }
   const text = (value) => typeof value === 'string' ? value.trim() : ''
   return {
-    title: text(work.title) || text(summary?.title) || 'Untitled book',
+    title: text(work.title) || text(summary?.title) || '',
     authors: Array.isArray(summary?.author_name) ? summary.author_name.filter((name) => text(name)).join(', ') : '',
     year: summary?.first_publish_year || text(work.first_publish_date).match(/\b\d{4}\b/)?.[0] || '',
     cover: (Array.isArray(work.covers) && work.covers.find((cover) => Number.isInteger(cover) && cover > 0)) || summary?.cover_i || null,

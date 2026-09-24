@@ -4,7 +4,7 @@ Entre Páginas is a responsive book discovery application built as a TripleTen f
 
 ## Live Demo
 
-**Not deployed yet.** A live demo link will be added after deployment.
+[Visit Entre Páginas](https://entre-paginas-frontend.vercel.app)
 
 ## Main Features
 
@@ -93,13 +93,16 @@ npm run lint
 
 ```text
 src/
-├── components/    # Shared Header, SearchForm, and BookCard components and styles
+├── components/    # App, Main, Header, Navigation, About, Footer, Preloader, and shared UI
+├── images/        # Local SVG favicon
 ├── pages/         # Home, SearchResults, and BookDetails pages and styles
 ├── utils/         # Open Library requests and detail-data normalization
+├── vendor/        # Local WOFF fonts, @font-face rules, and font licenses
 ├── styles/        # Global styles and design variables
-├── App.jsx        # Application layout and routes
 └── main.jsx       # React entry point and router setup
 ```
+
+Each component and page has its own directory containing JSX and CSS. Local Lora and Arimo WOFF fonts are bundled with their licenses; no remote font service is used.
 
 ## Responsive Design
 
